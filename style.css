@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap');
+.header {
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Josefin Sans', sans-serif;
+    color: white;
+    height: 100px;
+}
+.header h1 {
+    margin: 0;
+    text-shadow: 3px 2px fuchsia;
+}
+
+.selection {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.button {
+    font-family: 'Josefin Sans', sans-serif;
+    width: 200px;
+    height: 70px;
+    font-size: 30px;
+    box-shadow: 3px 3px fuchsia;
+}
+
+#easy:hover{
+    background: green;
+    transition: 0.8s;
+}
+
+#medium:hover{
+    background: orange;
+    transition: 0.8s;
+}
+
+#hard:hover{
+    background: red;
+    transition: 0.8s;
+}
+
+
+
+.textArea {
+    background: white;
+    font-size: 120px;
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: center;
+    margin: auto;
+    margin-top: 60px;
+    height: 350px;
+    width: 700px;
+    border: 5px fuchsia solid;
+    border-radius: 5px;
+    overflow: scroll;
+
+}
+
+.keyboard {
+    text-align: center;
+}
+
+.keyboard button {
+    height: 60px;
+    width: 60px;
+    pointer-events: none;
+    border: 1px fuchsia solid;
+    border-radius: 2px;
+    margin-top: 2px;
+    box-shadow: 1px 1px grey;
+}
+
+
+.input {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.input input {
+    height: 60px;
+    border: 7px fuchsia solid;
+    border-radius: 2px;
+}
+
+#value {
+    height: 60px;
+    width: 30px;
+    border: 7px fuchsia solid;
+    border-radius: 2px;
+}
