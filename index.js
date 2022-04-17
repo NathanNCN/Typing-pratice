@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href='style.css' >
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style='margin: 0; background-color: black;'>
+    <div class='header'> 
+        <h1>Typing pratice</h1>
+    </div>
+    <div class='selection'>
+        <button class='button' id='easy'>Easy</button>
+        <button class='button' id='medium'>Medium</button>
+        <button class='button' id='hard'>Hard</button>
+    </div>
+    <div class='textArea'>
+        <p id='words'></p>
+    </div>
+    <div class='input'>
+        <input id='Input'type="text">
+        <input id='value'type="number" step='1' min='10' max=99 value='10'>
+    </div>
+    <div class='keyboard' style='margin-top: 60px;'>
+        <button id='q'>Q</button>
+        <button id='w'>W</button>
+        <button id='e'>E</button>
+        <button id='r'>R</button>
+        <button id='t'>T</button>
+        <button id='y'>Y</button>
+        <button id='u'>U</button>
+        <button id='i'>I</button>
+        <button id='o'>O</button>
+        <button id='p'>P</button>
+
+    </div>   
+    <div class='keyboard'>
+        <button id='a'>A</button>
+        <button id='s'>S</button>
+        <button id='d'>D</button>
+        <button id='f'>F</button>
+        <button id='g'>G</button>
+        <button id='h'>H</button>
+        <button id='j'>J</button>
+        <button id='k'>K</button>
+        <button id='l'>L</button>
+    </div> 
+    <div class='keyboard'>
+        <button id='z'>Z</button>
+        <button id='x'>X</button>
+        <button id='c'>C</button>
+        <button id='v'>V</button>
+        <button id='b'>B</button>
+        <button id='n'>N</button>
+        <button id='m'>M</button>
+    </div> 
+    <div class='keyboard'>
+        <button style='width: 275px;'id=' '>SPACE</button>
+    </div>
+</body>
+<script src="main.js"></script>
+</html>
