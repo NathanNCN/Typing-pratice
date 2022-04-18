@@ -20,8 +20,8 @@ let correct = 0
 
 let grid = document.getElementById('wordGrid')
 
-let easyList = ['dog','cat', 'mail', 'code', 'ink', 'aid', 'pet', 'sit', 'urn', 'van', 'app', 'data', 'line', 'lime', 'deer', 'deep', 'seen', ]
-let mediumList = ['bread', 'head', 'would', 'these', 'other' , 'great', 'every', 'those', 'world', 'going', 'midst', 'civil', 'limit', 'swift' ]
+let easyList = ['dog','cat', 'mail', 'code', 'ink', 'aid', 'pet', 'sit', 'urn', 'van', 'app', 'data', 'line', 'lime', 'deer', 'deep', 'seen', 'bread', 'head', 'would', 'these', 'other' , 'great', 'every', 'those', 'world', 'going', 'midst', 'civil', 'limit', 'swift']
+let mediumList = ['I love bread', 'Depends on the story', 'We shall all dance today' ]
 let hardList = ['absence','address', 'acadmeny', 'accused', 'absence', 'alleged', 'ancient']
 
 
@@ -45,6 +45,7 @@ function keyPressed(e){
 
 function wordchoice(){
     word = currentMode[Math.floor(Math.random() * currentMode.length)];
+    console.log(word)
     currentWord =  word;
     console.log(word)
     return word
@@ -53,11 +54,15 @@ function wordchoice(){
 function changeWord(){
     wordchoice();
     grid.style.gridTemplateColumns = 'repeat(' + word.length + ', 1fr)'
+    if (word.length > 9){
+        grid.style.gridTemplateColumns = 'repeat(9, minmax(0, 2fr)'
+    }
+
     for (i=0; i<word.length; i++){
         let cell = document.createElement('div');
         cell.textContent = word[i];
         cell.setAttribute('id', i)
-        console.log(cell.id);
+        console.log(cell.textContent);
         grid.appendChild(cell);
     }
 }
