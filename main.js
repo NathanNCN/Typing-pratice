@@ -18,10 +18,10 @@ let Stop = null;
 let tries = 0;
 let correct = 0
 
-let grid = document.getElementById('wordGrid')
+let textSpan = document.getElementById('wordGrid')
 
 let easyList = ['dog','cat', 'mail', 'code', 'ink', 'aid', 'pet', 'sit', 'urn', 'van', 'app', 'data', 'line', 'lime', 'deer', 'deep', 'seen', 'bread', 'head', 'would', 'these', 'other' , 'great', 'every', 'those', 'world', 'going', 'midst', 'civil', 'limit', 'swift']
-let mediumList = ['I love bread', 'Depends on the story', 'We shall all dance today' ]
+let mediumList = ['I love bread', 'Depends on the story', 'We shall all dance today', 'Mary and Samantha arrived at the bus station early', 'I looked for Mary and Samantha at the bus station. ', 'Mary and Samantha took the bus.' ]
 let hardList = ['absence','address', 'acadmeny', 'accused', 'absence', 'alleged', 'ancient']
 
 
@@ -53,17 +53,16 @@ function wordchoice(){
 
 function changeWord(){
     wordchoice();
-    grid.style.gridTemplateColumns = 'repeat(' + word.length + ', 1fr)'
-    if (word.length > 9){
-        grid.style.gridTemplateColumns = 'repeat(9, minmax(0, 2fr)'
-    }
-
     for (i=0; i<word.length; i++){
-        let cell = document.createElement('div');
+        let cell = document.createElement('span');
+        if (currentMode == mediumList){
+            cell.style.cssText = 'font-size: 80px; margin: 0px;'
+        } else if (currentMode == hardList){
+            cell.style.cssText = ' font-size: 40px; margin: 0px;'
+        }
         cell.textContent = word[i];
         cell.setAttribute('id', i)
-        console.log(cell.textContent);
-        grid.appendChild(cell);
+        textSpan.appendChild(cell);
     }
 }
 
@@ -78,8 +77,8 @@ function setUpMode(){
 }
 
 function restGrid(){
-    while (grid.firstChild){
-        grid.removeChild(grid.lastChild);
+    while (textSpan.firstChild){
+        textSpan.removeChild(textSpan.lastChild);
     }
 }
 function easy(){
@@ -119,9 +118,10 @@ function rest(){
 function getAnswerInput(){
     if (tries == Stop){
         restGrid()
-        let bread = document.createElement('h2')
+        let bread = document.createElement('span')
         bread.textContent = 'Thank You for playing you got ' + correct + ' out of ' + Stop + '. That is a ' + (100 * correct)/Stop + '% Great job' 
-        grid.appendChild(bread)
+        bread.style.fontSize = '90px'
+        textSpan.appendChild(bread)
         console.log('hi')
         rest()
     }else if (answerInput.value == word){
@@ -160,8 +160,8 @@ document.addEventListener('keyup', function(KeyboardEvent){
 
 document.addEventListener('keydown', function(KeyboardEvent){
     if (KeyboardEvent.code === 'Enter'){
-        while (grid.firstChild)
-            grid.removeChild(grid.lastChild);
+        while (textSpan.firstChild)
+            textSpan.removeChild(textSpan.lastChild);
     }
 })
 
