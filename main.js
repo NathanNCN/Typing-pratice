@@ -52,7 +52,7 @@ function easy(){
 }
 
 function medium(){
-    words.textContent = mediumList[Math.floor(Math.random() * easyList.length)]
+    words.textContent = mediumList[Math.floor(Math.random() * mediumList.length)]
     Stop = howMany.value
     answerInput.disabled = false;
     howMany.disabled = true;
@@ -63,7 +63,7 @@ function medium(){
 }
 
 function hard(){
-    words.textContent = hardList[Math.floor(Math.random() * easyList.length)]
+    words.textContent = hardList[Math.floor(Math.random() * hardlist.length)]
     Stop = howMany.value
     answerInput.disabled = false;
     howMany.disabled = true;
@@ -92,12 +92,12 @@ function getAnswerInput(){
         words.textContent = 'Thank You for playing you got ' + correct + ' out of ' + Stop + '. That is a ' + (100 * correct)/Stop + '% Great job'
         rest()
     }else if (answerInput.value == givenWord.textContent){
-        words.textContent = currentMode[Math.floor(Math.random() * easyList.length)]
+        words.textContent = currentMode[Math.floor(Math.random() * currentMode.length)]
         correct +=1
         tries +=1
     } else {
         tries +=1
-        words.textContent = currentMode[Math.floor(Math.random() * easyList.length)]
+        words.textContent = currentMode[Math.floor(Math.random() * currentMode.length)]
     }
 }
 
