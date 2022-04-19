@@ -14,15 +14,18 @@ let lastLetter = null
 let currentMode = 'null'
 
 
+
 let Stop = null;
 let tries = 0;
 let correct = 0
 
 let textSpan = document.getElementById('wordGrid')
 
-let easyList = ['dog','cat', 'mail', 'code', 'ink', 'aid', 'pet', 'sit', 'urn', 'van', 'app', 'data', 'line', 'lime', 'deer', 'deep', 'seen', 'bread', 'head', 'would', 'these', 'other' , 'great', 'every', 'those', 'world', 'going', 'midst', 'civil', 'limit', 'swift']
+let easyList = ['dog','cat', 'mail', 'code', 'ink', 'aid', 'pet', 'sit', 'urn', 'van', 'app', 'data', 'line', 'lime', 'deer', 'deep', 'seen', 'bread', 'head', 'would', 'these', 'other' , 'great', 'every', 'those', 'world', 'going', 'midst', 'civil', 'limit', 'swift', '']
 let mediumList = ['I love bread', 'Depends on the story', 'We shall all dance today', 'Mary and Samantha arrived at the bus station early', 'I looked for Mary and Samantha at the bus station. ', 'Mary and Samantha took the bus.' ]
 let hardList = ['absence','address', 'acadmeny', 'accused', 'absence', 'alleged', 'ancient']
+
+
 
 
 function keyPressed(e){
@@ -45,9 +48,7 @@ function keyPressed(e){
 
 function wordchoice(){
     word = currentMode[Math.floor(Math.random() * currentMode.length)];
-    console.log(word)
     currentWord =  word;
-    console.log(word)
     return word
 }
 
@@ -134,19 +135,27 @@ function getAnswerInput(){
     }
 }
 
-function checkletter(e){
-    if (answerInput.value[answerInput.value.length-1] === currentWord[answerInput.value.length-1]){
-        document.getElementById(answerInput.value.length-1).classList.add('correctLetter')
-    } else{
-        document.getElementById(answerInput.value.length-1).classList.add('incorrectLetter')
-    }
-
-}
-
 answerInput.disabled = true;
 
 document.addEventListener('keydown', keyPressed);
-document.addEventListener('input', checkletter)
+document.addEventListener('input', () => {
+    let quote = textSpan.querySelectorAll('span')
+    let inputs = answerInput.value.split('');
+
+    quote.forEach(function(letter,index){
+        if (inputs[index] == null){
+            document.getElementById(index).classList.remove('incorrectLetter')
+            document.getElementById(index).classList.remove('correctLetter')
+        } else if (inputs[index]=== letter.textContent){
+            document.getElementById(index).classList.add('correctLetter')
+            document.getElementById(index).classList.remove('incorrectLetter')
+        } else{
+            document.getElementById(index).classList.add('incorrectLetter')
+            document.getElementById(index).classList.remove('correctLetter')
+        }
+    })
+
+})
 
 document.addEventListener('keyup', function(KeyboardEvent){
     if (KeyboardEvent.code == 'Enter'){
@@ -168,3 +177,4 @@ document.addEventListener('keydown', function(KeyboardEvent){
 bttnEasy.addEventListener('click', () => easy())
 bttnMedium.addEventListener('click', () => medium())
 bttnHard.addEventListener('click', () => hard())
+
