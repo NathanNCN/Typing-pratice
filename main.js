@@ -1,3 +1,4 @@
+
 let bttnEasy = document.getElementById('easy')
 let bttnMedium = document.getElementById('medium')
 let bttnHard = document.getElementById('hard')
@@ -18,6 +19,11 @@ let currentMode = 'null'
 let Stop = null;
 let tries = 0;
 let correct = 0
+
+let correctCharacters = 0
+let totalCharacter = 0;
+
+let lastletter = null
 
 let textSpan = document.getElementById('wordGrid')
 
@@ -49,6 +55,7 @@ function keyPressed(e){
 function wordchoice(){
     word = currentMode[Math.floor(Math.random() * currentMode.length)];
     currentWord =  word;
+    totalCharacter +=word.length
     return word
 }
 
@@ -114,16 +121,33 @@ function rest(){
     correct = 0
     tries = 0
     Stop = null
+    totalCharacter = 0
+    correctCharacters = 0
 }
+
+
+function checkAccuracy(){
+    let quote = textSpan.querySelectorAll('span')
+    let inputs = answerInput.value.split('');
+    quote.forEach(function(letter,index){
+    if (inputs[index] === letter.textContent){
+           console.log('plus')
+            correctCharacters +=1
+        } 
+    })
+}
+
+
 
 function getAnswerInput(){
     if (tries == Stop){
+        console.log(correctCharacters)
+        console.log(totalCharacter)
         restGrid()
         let bread = document.createElement('span')
-        bread.textContent = 'Thank You for playing you got ' + correct + ' out of ' + Stop + '. That is a ' + (100 * correct)/Stop + '% Great job' 
+        bread.textContent = 'Thank You for playing you got ' + correct + ' out of ' + Stop + '. That is a ' + (100 * correct)/Stop + '% Great job. You averaged a ' + Math.ceil(correctCharacters/totalCharacter*100) + '% accuarcy when typing'
         bread.style.fontSize = '90px'
         textSpan.appendChild(bread)
-        console.log('hi')
         rest()
     }else if (answerInput.value == word){
         changeWord();
@@ -157,6 +181,9 @@ document.addEventListener('input', () => {
 
 })
 
+
+
+
 document.addEventListener('keyup', function(KeyboardEvent){
     if (KeyboardEvent.code == 'Enter'){
         if (Stop != null){
@@ -169,6 +196,7 @@ document.addEventListener('keyup', function(KeyboardEvent){
 
 document.addEventListener('keydown', function(KeyboardEvent){
     if (KeyboardEvent.code === 'Enter'){
+        checkAccuracy()
         while (textSpan.firstChild)
             textSpan.removeChild(textSpan.lastChild);
     }
@@ -177,4 +205,3 @@ document.addEventListener('keydown', function(KeyboardEvent){
 bttnEasy.addEventListener('click', () => easy())
 bttnMedium.addEventListener('click', () => medium())
 bttnHard.addEventListener('click', () => hard())
-
